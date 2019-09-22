@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "22f6464a-08af-4383-97d2-5bdce0c59dab",
+		"name": "xe-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SEARCH | Create Search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/create?term=O",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"create"
+					],
+					"query": [
+						{
+							"key": "term",
+							"value": "O",
+							"description": "Use one of the following words: \n`\"BONG\", \"FOO\", \"ASDA\", \"ASDA-FOO\", \"BEE\"` or sets of consecutive letters included in them. \n\n"
+						}
+					]
+				},
+				"description": "It will create a new (global) search result in the service. The contents of the search will be chosen from the hardcoded pool of ads in the app."
+			},
+			"response": []
+		},
+		{
+			"name": "SEARCH | Fetch Ads",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/fetch?page=1&pageSize=20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fetch"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SEARCH | View an Ad",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"description": "`0` for \"DIRECT\" , `1` for \"CLICKED\"",
+						"key": "viewmode",
+						"type": "text",
+						"value": "0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/view?adId=c802df22-eb9d-4bd5-a3ae-600d65641f4b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"view"
+					],
+					"query": [
+						{
+							"key": "adId",
+							"value": "c802df22-eb9d-4bd5-a3ae-600d65641f4b",
+							"description": "The Ad's id"
+						}
+					]
+				},
+				"description": "It fetches the contents of an ad. Using the proper value in the header, it can be used to replicate a \"direct\"/\"clicked\" view."
+			},
+			"response": [
+				{
+					"name": "SEARCH | View an Ad",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "viewmode",
+								"value": "0",
+								"description": "`0` for \"DIRECT\" , `1` for \"CLICKED\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/view?adId=c802df22-eb9d-4bd5-a3ae-600d65641f4b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"view"
+							],
+							"query": [
+								{
+									"key": "adId",
+									"value": "c802df22-eb9d-4bd5-a3ae-600d65641f4b"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 22 Sep 2019 15:41:16 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"c802df22-eb9d-4bd5-a3ae-600d65641f4b\",\n    \"text\": \"This is the ad text BONG\",\n    \"customerId\": 126,\n    \"createdAt\": \"2019-09-22T15:28:11.204+0000\"\n}"
+				}
+			]
+		},
+		{
+			"name": "HELPER | Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/helper/stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"helper",
+						"stats"
+					]
+				},
+				"description": "Helper endpoint to check the current stats"
+			},
+			"response": []
+		},
+		{
+			"name": "HELPER | Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/helper/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"helper",
+						"data"
+					]
+				},
+				"description": "A helper endpoint to check what are the contents (Ads) of the current search"
+			},
+			"response": []
+		}
+	]
+}
